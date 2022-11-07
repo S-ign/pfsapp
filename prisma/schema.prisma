@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
   // Further reading:
   // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
@@ -131,8 +131,8 @@ model Mortgage {
   address   String
   notes     String
   amount    String
-  gmeId     String
-  gmeInfo   GrossMonthlyExpenses @relation(fields: [gmeId], references: [id], onDelete: Cascade)
+  propertyID     String
+  property   Property @relation(fields: [propertyID], references: [id], onDelete: Cascade)
 }
 
 model Rent {
@@ -142,8 +142,8 @@ model Rent {
   address   String
   notes     String
   amount    String
-  gmeId     String
-  gmeInfo   GrossMonthlyExpenses @relation(fields: [gmeId], references: [id], onDelete: Cascade)
+  propertyID     String @unique
+  property   Property @relation(fields: [propertyID], references: [id], onDelete: Cascade)
 }
 
 model Insurance {
@@ -152,8 +152,8 @@ model Insurance {
   name      String
   notes     String
   amount    String
-  gmeId     String
-  gmeInfo   GrossMonthlyExpenses @relation(fields: [gmeId], references: [id], onDelete: Cascade)
+  propertyID     String
+  property   Property @relation(fields: [propertyID], references: [id], onDelete: Cascade)
 }
 
 model PropertyTax {
@@ -163,8 +163,8 @@ model PropertyTax {
   address   String
   notes     String
   amount    String
-  gmeId     String
-  gmeInfo   GrossMonthlyExpenses @relation(fields: [gmeId], references: [id], onDelete: Cascade)
+  propertyID     String @unique
+  property   Property @relation(fields: [propertyID], references: [id], onDelete: Cascade)
 }
 
 model HomeMaintenance {
@@ -174,8 +174,8 @@ model HomeMaintenance {
   address   String
   notes     String
   amount    String
-  gmeId     String
-  gmeInfo   GrossMonthlyExpenses @relation(fields: [gmeId], references: [id], onDelete: Cascade)
+  propertyID     String
+  property   Property @relation(fields: [propertyID], references: [id], onDelete: Cascade)
 }
 
 model HomeIncidentals {
@@ -185,8 +185,8 @@ model HomeIncidentals {
   address   String
   notes     String
   amount    String
-  gmeId     String
-  gmeInfo   GrossMonthlyExpenses @relation(fields: [gmeId], references: [id], onDelete: Cascade)
+  propertyID     String
+  property   Property @relation(fields: [propertyID], references: [id], onDelete: Cascade)
 }
 
 model Electricity {
@@ -199,17 +199,370 @@ model Electricity {
   property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }
 
+model Water {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  propertyId  String @unique
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Garbage {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  propertyId  String @unique
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Gas {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  propertyId  String @unique
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Internet {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  propertyId  String @unique
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model PhonePlan {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
 model Property {
   id  String   @id @default(cuid())
   electricity Electricity?
+  mortgage Mortgage[]
+  rent Rent?
+  insurance Insurance[]
+  propertyTax PropertyTax?
+  homeMaintenance HomeMaintenance[]
+  homeIncidentals HomeIncidentals[]
+  water Water?
+  garbage Garbage?
+  gas Gas?
+  internet Internet?
+  marketValue   String
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model AutoLoan {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  carId       String
+  car Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model AutoInsurance {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  carId       String
+  car Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model FuelCosts {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  carId       String @unique
+  car Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model AutoMaintenance {
+  id          String   @id @default(cuid())
+  due         DateTime?
+  provider    String
+  notes       String
+  amount      String
+  carId       String
+  car Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model Car {
+  id  String   @id @default(cuid())
+  autoLoan AutoLoan[]
+  autoInsurance AutoInsurance[]
+  fuelCosts FuelCosts?
+  autoMaintenance AutoMaintenance[]
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model Groceries {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model DiningOut {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model HealthInsurance {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+model VisionInsurance {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+model DentalInsurance {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+model ChildCare {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+model ChildExpenses {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+model StudentLoan {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  gmeID  String @unique
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model LineOfCredit {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  provider    String
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model CreditCard {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  provider    String
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model PersonalLoan {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  provider    String
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
+}
+
+model GMEOther {
+  id  String   @id @default(cuid())
+  due         DateTime?
+  notes       String
+  amount      String
+  provider    String
+  gmeID  String
+  grossMonthlyExpenses GrossMonthlyExpenses @relation(fields: [gmeID], references: [id], onDelete: Cascade)
 }
 
 model GrossMonthlyExpenses {
   id  String   @id @default(cuid())
-  mortgages Mortgage[]
-  rent Rent[]
-  insurance Insurance[]
-  propertyTax PropertyTax[]
-  homeMaintenance HomeMaintenance[]
-  homeIncidentals HomeIncidentals[]
+  phonePlan PhonePlan[]
+  property Property[]
+  car Car[]
+  groceries Groceries?
+  diningOut DiningOut?
+  healthInsurance HealthInsurance?
+  visionInsurance VisionInsurance?
+  dentalInsurance DentalInsurance?
+  childCare ChildCare?
+  childExpenses ChildExpenses?
+  studentLoan StudentLoan?
+  lineOfCredit LineOfCredit[]
+  creditCard CreditCard[]
+  personalLoan PersonalLoan[]
+  other GMEOther[]
+}
+
+model MutualFund {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model Stock {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model Annuity {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model CashValueLifeInsurance {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model SavingsAccount {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model CheckingsAccount {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model Retirement {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model Roth {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model Pension {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model CertificateOfDeposit {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model OtherAsset {
+  id         String   @id @default(cuid())
+  name       String
+  value      String
+  intrest    String
+  dividends  String
+  assetID    String
+  assets     Assets @relation(fields: [assetID], references: [id], onDelete: Cascade)
+}
+
+model Assets {
+  id                      String   @id @default(cuid())
+  mutualFunds             MutualFund[]
+  stocks                  Stock[]
+  annuity                 Annuity[]
+  cashValueLifeInsurance  CashValueLifeInsurance[]
+  savingsAccount          SavingsAccount[]
+  checkingsAccount        CheckingsAccount[]
+  retirement              Retirement[]
+  roth                    Roth[]
+  pension                 Pension[]
+  certificateOfDeposit    CertificateOfDeposit[]
+  OtherAsset              OtherAsset[]
 }
