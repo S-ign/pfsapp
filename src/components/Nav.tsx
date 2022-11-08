@@ -3,12 +3,12 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
 
-const Nav = (props: {className: string}) => {
+const Nav = () => {
   return (
-    <div className={{props}}>
+    <div className="hover:bg-slate-500/75 transition">
       <div className="flex justify-between">
         <picture>
-          <img src={logo.src} alt="" />
+          <img className="m-6" src={logo.src} alt="" />
         </picture>
         <AuthShowcase/>
       </div>
@@ -37,7 +37,7 @@ const AuthShowcase: React.FC = () => {
         <p className="text-2xl text-blue-500">{secretMessage}</p>
       )}
       <button
-        className="rounded-md border border-black bg-violet-50 px-4 py-2 text-xl shadow-lg hover:bg-violet-100"
+        className="rounded-md border border-black bg-violet-50 m-4 px-4 py-1 text-xl shadow-lg hover:bg-amber-400"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
