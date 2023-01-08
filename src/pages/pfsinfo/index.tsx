@@ -44,7 +44,7 @@ const PfsInfo: NextPage = () => {
   const gmeCreditCard = useBoundStore((state) => state.gmeCreditCard)
   const gmePersonalLoan = useBoundStore((state) => state.gmePersonalLoan)
   const gmeOther = useBoundStore((state) => state.gmeOther)
-  const GME = [gmeMortgage, rent, insurance, propertyTax, homeMaintenance, homeIncidentals, electricity, water, garbage, gas, internet, phonePlan, autoLoan,autoInsurance, fuelCosts, autoMaintenance, groceries, diningOut, healthInsurance, visionInsurance, dentalInsurance, childCare, childExpenses, studentLoan, gmeLineOfCredit, gmeCreditCard, gmePersonalLoan, gmeOther]
+  const gme = [gmeMortgage, rent, insurance, propertyTax, homeMaintenance, homeIncidentals, electricity, water, garbage, gas, internet, phonePlan, autoLoan,autoInsurance, fuelCosts, autoMaintenance, groceries, diningOut, healthInsurance, visionInsurance, dentalInsurance, childCare, childExpenses, studentLoan, gmeLineOfCredit, gmeCreditCard, gmePersonalLoan, gmeOther]
 
   const saveHandler = () => {}
 
@@ -89,9 +89,9 @@ const PfsInfo: NextPage = () => {
               <h3 className="flex text-2xl justify-center bg-slate-400">Gross Monthly Expenses</h3>
               <>
                 {
-                  (GME !== undefined)
+                  (gme !== undefined)
                     &&
-                      GME.map(({key, Name, Date, Amount, Notes}) => {
+                      gme.map(({key, Name, Date, Amount, Notes}) => {
                       console.log(key, Name,Date, Amount, Notes)
                       return (
                         <FormItem 

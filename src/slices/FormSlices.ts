@@ -105,7 +105,7 @@ const createGrossMonthlyIncomeSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateSalary: (Salary) => set(() => ({Salary: Salary})),
+    updateSalary: (Salary) => set({Salary}),
 
     RealEstateRentals: {
       key: 'GrossMonthlyIncomeRealEstateRentals',
@@ -114,7 +114,7 @@ const createGrossMonthlyIncomeSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateRealEstateRentals: (RealEstateRentals) => set(() => ({ RealEstateRentals: RealEstateRentals})),
+    updateRealEstateRentals: (RealEstateRentals) => set({RealEstateRentals}),
 
     Business: {
       key: 'GrossMonthlyIncomeBusiness',
@@ -123,6 +123,7 @@ const createGrossMonthlyIncomeSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
+    updateBusiness: (Business) => set({Business}),
 
     DividendStocks: {
       key: 'GrossMonthlyIncomeDividendStocks',
@@ -131,6 +132,7 @@ const createGrossMonthlyIncomeSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
+    updateDividendStocks: (DividendStocks) => set({DividendStocks}),
 
     Other: {
       key: 'GrossMonthlyIncomeOther',
@@ -139,10 +141,7 @@ const createGrossMonthlyIncomeSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-
-    updateBusiness: (Business) => set(() => ({ Business: Business})),
-    updateDividendStocks: (DividendStocks) => set(() => ({ DividendStocks: DividendStocks})),
-    updateOther: (Other) => set(() => ({ Other: Other})),
+    updateOther: (Other) => set({Other}),
   })
 
 interface GrossMonthlyExpenses {
@@ -637,7 +636,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updategmeMortgage: (gmeMortgage) => set(() => ({gmeMortgage: gmeMortgage})),
+    updategmeMortgage: (gmeMortgage) => set({gmeMortgage}),
 
     Rent: {
       key: 'GrossMonthlyExpensesRent',
@@ -646,7 +645,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateRent: (Rent) => set(() => ({Rent: Rent})),
+    updateRent: (Rent) => set({Rent}),
 
     Insurance: {
       key: 'GrossMonthlyExpensesInsurance',
@@ -655,7 +654,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateInsurance: (Insurance) => set(() => ({Insurance: Insurance})),
+    updateInsurance: (Insurance) => set({Insurance}),
 
     PropertyTax: {
       key: 'GrossMonthlyExpensesPropertyTax',
@@ -664,7 +663,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updatePropertyTax: (PropertyTax) => set(() => ({PropertyTax: PropertyTax})),
+    updatePropertyTax: (PropertyTax) => set({PropertyTax}),
 
     HomeMaintenance: {
       key: 'GrossMonthlyExpensesHomeMaintenance',
@@ -673,7 +672,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateHomeMaintenance: (HomeMaintenance) => set(() => ({HomeMaintenance: HomeMaintenance})),
+    updateHomeMaintenance: (HomeMaintenance) => set({HomeMaintenance}),
 
     HomeIncidentals: {
       key: 'GrossMonthlyExpensesHomeIncidentals',
@@ -682,7 +681,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateHomeIncidentals: (HomeIncidentals) => set(() => ({HomeIncidentals: HomeIncidentals})),
+    updateHomeIncidentals: (HomeIncidentals) => set({HomeIncidentals}),
 
     Electricity: {
       key: 'GrossMonthlyExpensesElectricity',
@@ -691,7 +690,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateElectricity: (Electricity) => set(() => ({Electricity: Electricity})),
+    updateElectricity: (Electricity) => set({Electricity}),
 
     Water: {
       key: 'GrossMonthlyExpensesWater',
@@ -700,7 +699,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateWater: (Water) => set(() => ({Water: Water})),
+    updateWater: (Water) => set({Water}),
 
     Garbage: {
       key: 'GrossMonthlyExpensesGarbage',
@@ -709,7 +708,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateGarbage: (Garbage) => set(() => ({Garbage: Garbage})),
+    updateGarbage: (Garbage) => set({Garbage}),
 
     Gas: {
       key: 'GrossMonthlyExpensesGas',
@@ -718,7 +717,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateGas: (Gas) => set(() => ({Gas: Gas})),
+    updateGas: (Gas) => set({Gas}),
 
     Internet: {
       key: 'GrossMonthlyExpensesInternet',
@@ -727,7 +726,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateInternet: (Internet) => set(() => ({Internet: Internet})),
+    updateInternet: (Internet) => set({Internet}),
 
     PhonePlan: {
       key: 'GrossMonthlyExpensesPhonePlan',
@@ -736,7 +735,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updatePhonePlan: (PhonePlan) => set(() => ({PhonePlan: PhonePlan})),
+    updatePhonePlan: (PhonePlan) => set({PhonePlan}),
 
     AutoLoan: {
       key: 'GrossMonthlyExpensesAutoLoan',
@@ -745,7 +744,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateAutoLoan: (AutoLoan) => set(() => ({AutoLoan: AutoLoan})),
+    updateAutoLoan: (AutoLoan) => set({AutoLoan}),
 
     AutoInsurance: {
       key: 'GrossMonthlyExpensesAutoInsurance',
@@ -754,7 +753,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateAutoInsurance: (AutoInsurance) => set(() => ({AutoInsurance: AutoInsurance})),
+    updateAutoInsurance: (AutoInsurance) => set({AutoInsurance}),
 
     FuelCosts: {
       key: 'GrossMonthlyExpensesFuelCosts',
@@ -763,7 +762,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateFuelCosts: (FuelCosts) => set(() => ({FuelCosts: FuelCosts})),
+    updateFuelCosts: (FuelCosts) => set({FuelCosts}),
 
     AutoMaintenance: {
       key: 'GrossMonthlyExpensesAutoMaintenance',
@@ -772,7 +771,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateAutoMaintenance: (AutoMaintenance) => set(() => ({AutoMaintenance: AutoMaintenance})),
+    updateAutoMaintenance: (AutoMaintenance) => set({AutoMaintenance}),
 
     Groceries: {
       key: 'GrossMonthlyExpensesGroceries',
@@ -781,7 +780,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateGroceries: (Groceries) => set(() => ({Groceries: Groceries})),
+    updateGroceries: (Groceries) => set({Groceries}),
 
     DiningOut: {
       key: 'GrossMonthlyExpensesDiningOut',
@@ -790,7 +789,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateDiningOut: (DiningOut) => set(() => ({DiningOut: DiningOut})),
+    updateDiningOut: (DiningOut) => set({DiningOut}),
 
     HealthInsurance: {
       key: 'GrossMonthlyExpensesHealthInsurance',
@@ -799,7 +798,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateHealthInsurance: (HealthInsurance) => set(() => ({HealthInsurance: HealthInsurance})),
+    updateHealthInsurance: (HealthInsurance) => set({HealthInsurance}),
 
     VisionInsurance: {
       key: 'GrossMonthlyExpensesVisionInsurance',
@@ -808,7 +807,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateVisionInsurance: (VisionInsurance) => set(() => ({VisionInsurance: VisionInsurance})),
+    updateVisionInsurance: (VisionInsurance) => set({VisionInsurance}),
 
     DentalInsurance: {
       key: 'GrossMonthlyExpensesDentalInsurance',
@@ -817,7 +816,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateDentalInsurance: (DentalInsurance) => set(() => ({DentalInsurance: DentalInsurance})),
+    updateDentalInsurance: (DentalInsurance) => set({DentalInsurance}),
 
     ChildCare: {
       key: 'GrossMonthlyExpensesChildCare',
@@ -826,7 +825,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateChildCare: (ChildCare) => set(() => ({ChildCare: ChildCare})),
+    updateChildCare: (ChildCare) => set({ChildCare}),
 
     ChildExpenses: {
       key: 'GrossMonthlyExpensesChildExpenses',
@@ -835,7 +834,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateChildExpenses: (ChildExpenses) => set(() => ({ChildExpenses: ChildExpenses})),
+    updateChildExpenses: (ChildExpenses) => set({ChildExpenses}),
 
     StudentLoan: {
       key: 'GrossMonthlyExpensesStudentLoan',
@@ -844,7 +843,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updateStudentLoan: (StudentLoan) => set(() => ({StudentLoan: StudentLoan})),
+    updateStudentLoan: (StudentLoan) => set({StudentLoan}),
 
     gmeLineOfCredit: {
       key: 'GrossMonthlyExpensesLineOfCredit',
@@ -853,7 +852,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updategmeLineOfCredit: (gmeLineOfCredit) => set(() => ({gmeLineOfCredit: gmeLineOfCredit})),
+    updategmeLineOfCredit: (gmeLineOfCredit) => set({gmeLineOfCredit}),
 
     gmeCreditCard: {
       key: 'GrossMonthlyExpensesCreditCard',
@@ -862,7 +861,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updategmeCreditCard: (gmeCreditCard) => set(() => ({gmeCreditCard: gmeCreditCard})),
+    updategmeCreditCard: (gmeCreditCard) => set({gmeCreditCard}),
 
     gmePersonalLoan: {
       key: 'GrossMonthlyExpensesPersonalLoan',
@@ -871,7 +870,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updategmePersonalLoan: (gmePersonalLoan) => set(() => ({gmePersonalLoan: gmePersonalLoan})),
+    updategmePersonalLoan: (gmePersonalLoan) => set({gmePersonalLoan}),
 
     gmeOther: {
       key: 'GrossMonthlyExpensesOther',
@@ -880,7 +879,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
       Amount: '',
       Notes: '',
     },
-    updategmeOther: (gmeOther) => set(() => ({gmeOther: gmeOther})),
+    updategmeOther: (gmeOther) => set({gmeOther}),
 
   })
 

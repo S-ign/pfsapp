@@ -20,8 +20,10 @@ export default function FormItem(props: {key: string, keyname: string, Name: str
 
   const DateChangeHandler = (event) => {
     const date = [event.$M+1, event.$D, event.$y].join("/") 
-    if (event != null && event != undefined) {
 
+    if (!event) {
+      return;
+    }
     switch(props.keyname) {
 
       case "GrossMonthlyIncomeSalary":
@@ -46,61 +48,63 @@ export default function FormItem(props: {key: string, keyname: string, Name: str
 
     }
   }
-  }
   const AmountChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | null) => {
-    if (event != null && event != undefined) {
-      switch(props.keyname) {
 
-        case "GrossMonthlyIncomeSalary":
-          updateSalary({key:salary.key, Name:salary.Name, Date:salary.Date, Amount:event.target.value, Notes:salary.Notes})
-          break
+    if (!event) {
+      return;
+    }
+    switch(props.keyname) {
 
-        case "GrossMonthlyIncomeRealEstateRentals":
-          updateRealEstateRentals({key:realEstateRentals.key, Name:realEstateRentals.Name, Date:realEstateRentals.Date, Amount:event.target.value, Notes:realEstateRentals.Notes})
-          break
+      case "GrossMonthlyIncomeSalary":
+        updateSalary({key:salary.key, Name:salary.Name, Date:salary.Date, Amount:event.target.value, Notes:salary.Notes})
+        break
 
-        case "GrossMonthlyIncomeBusiness":
-          updateBusiness({key:business.key, Name:business.Name, Date:business.Date, Amount:event.target.value, Notes:business.Notes})
-          break
+      case "GrossMonthlyIncomeRealEstateRentals":
+        updateRealEstateRentals({key:realEstateRentals.key, Name:realEstateRentals.Name, Date:realEstateRentals.Date, Amount:event.target.value, Notes:realEstateRentals.Notes})
+        break
 
-        case "GrossMonthlyIncomeDividendStocks":
-          updateDividendStocks({key:dividendStocks.key, Name:dividendStocks.Name, Date:dividendStocks.Date, Amount:event.target.value, Notes:dividendStocks.Notes})
-          break
+      case "GrossMonthlyIncomeBusiness":
+        updateBusiness({key:business.key, Name:business.Name, Date:business.Date, Amount:event.target.value, Notes:business.Notes})
+        break
 
-        case "GrossMonthlyIncomeOther":
-          updateOther({key:other.key, Name:other.Name, Date:other.Date, Amount:event.target.value, Notes:other.Notes})
-          break
-      }
+      case "GrossMonthlyIncomeDividendStocks":
+        updateDividendStocks({key:dividendStocks.key, Name:dividendStocks.Name, Date:dividendStocks.Date, Amount:event.target.value, Notes:dividendStocks.Notes})
+        break
+
+      case "GrossMonthlyIncomeOther":
+        updateOther({key:other.key, Name:other.Name, Date:other.Date, Amount:event.target.value, Notes:other.Notes})
+        break
     }
   }
 
   const NoteChangeHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | null) => {
-    if (event != null && event != undefined) {
-      switch(props.keyname) {
+    if (!event) {
+      return;
+    }
+    switch(props.keyname) {
 
-        case "GrossMonthlyIncomeSalary":
-          updateSalary({key:salary.key, Name:salary.Name, Date:salary.Date, Amount:salary.Amount, Notes:event.target.value})
-          break
+      case "GrossMonthlyIncomeSalary":
+        updateSalary({key:salary.key, Name:salary.Name, Date:salary.Date, Amount:salary.Amount, Notes:event.target.value})
+        break
 
-        case "GrossMonthlyIncomeRealEstateRentals":
-          updateRealEstateRentals({key:realEstateRentals.key, Name:realEstateRentals.Name, Date:realEstateRentals.Date, Amount:realEstateRentals.Amount, Notes:event.target.value})
-          break
+      case "GrossMonthlyIncomeRealEstateRentals":
+        updateRealEstateRentals({key:realEstateRentals.key, Name:realEstateRentals.Name, Date:realEstateRentals.Date, Amount:realEstateRentals.Amount, Notes:event.target.value})
+        break
 
-        case "GrossMonthlyIncomeBusiness":
-          updateBusiness({key:business.key, Name:business.Name, Date:business.Date, Amount:business.Amount, Notes:event.target.value})
-          break
+      case "GrossMonthlyIncomeBusiness":
+        updateBusiness({key:business.key, Name:business.Name, Date:business.Date, Amount:business.Amount, Notes:event.target.value})
+        break
 
-        case "GrossMonthlyIncomeDividendStocks":
-          updateDividendStocks({key:dividendStocks.key, Name:dividendStocks.Name, Date:dividendStocks.Date, Amount:dividendStocks.Amount, Notes:event.target.value})
-          break
+      case "GrossMonthlyIncomeDividendStocks":
+        updateDividendStocks({key:dividendStocks.key, Name:dividendStocks.Name, Date:dividendStocks.Date, Amount:dividendStocks.Amount, Notes:event.target.value})
+        break
 
-        case "GrossMonthlyIncomeOther":
-          updateOther({key:other.key, Name:other.Name, Date:other.Date, Amount:other.Amount, Notes:event.target.value})
-          break
+      case "GrossMonthlyIncomeOther":
+        updateOther({key:other.key, Name:other.Name, Date:other.Date, Amount:other.Amount, Notes:event.target.value})
+        break
 
-        default:
-          console.log(props.keyname)
-      }
+      default:
+        console.log(props.keyname)
     }
   }
 
