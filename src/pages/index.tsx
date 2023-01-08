@@ -3,6 +3,8 @@ import Head from "next/head";
 //import Link from "next/link";
 import Nav from "../components/Nav"
 
+//import { useQuery } from '@tanstack/react-query'
+
 const Home: NextPage = () => {
 
   return (
