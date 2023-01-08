@@ -630,7 +630,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
   > = (set) => ({
 
     gmeMortgage: {
-      key: 'GrossMonthlyExpensesMortgage',
+      key: 'gmeMortgage',
       Name: 'Mortgage',
       Date: dateString,
       Amount: '',
@@ -639,7 +639,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updategmeMortgage: (gmeMortgage) => set({gmeMortgage}),
 
     Rent: {
-      key: 'GrossMonthlyExpensesRent',
+      key: 'gmeRent',
       Name: 'Rent',
       Date: dateString,
       Amount: '',
@@ -648,7 +648,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateRent: (Rent) => set({Rent}),
 
     Insurance: {
-      key: 'GrossMonthlyExpensesInsurance',
+      key: 'gmeInsurance',
       Name: 'Insurance',
       Date: dateString,
       Amount: '',
@@ -657,7 +657,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateInsurance: (Insurance) => set({Insurance}),
 
     PropertyTax: {
-      key: 'GrossMonthlyExpensesPropertyTax',
+      key: 'gmePropertyTax',
       Name: 'Property Tax',
       Date: dateString,
       Amount: '',
@@ -666,7 +666,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updatePropertyTax: (PropertyTax) => set({PropertyTax}),
 
     HomeMaintenance: {
-      key: 'GrossMonthlyExpensesHomeMaintenance',
+      key: 'gmeHomeMaintenance',
       Name: 'Home Maintenance',
       Date: dateString,
       Amount: '',
@@ -675,7 +675,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateHomeMaintenance: (HomeMaintenance) => set({HomeMaintenance}),
 
     HomeIncidentals: {
-      key: 'GrossMonthlyExpensesHomeIncidentals',
+      key: 'gmeHomeIncidentals',
       Name: 'Home Incidentals',
       Date: dateString,
       Amount: '',
@@ -684,7 +684,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateHomeIncidentals: (HomeIncidentals) => set({HomeIncidentals}),
 
     Electricity: {
-      key: 'GrossMonthlyExpensesElectricity',
+      key: 'gmeElectricity',
       Name: 'Electricity',
       Date: dateString,
       Amount: '',
@@ -693,7 +693,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateElectricity: (Electricity) => set({Electricity}),
 
     Water: {
-      key: 'GrossMonthlyExpensesWater',
+      key: 'gmeWater',
       Name: 'Water',
       Date: dateString,
       Amount: '',
@@ -702,7 +702,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateWater: (Water) => set({Water}),
 
     Garbage: {
-      key: 'GrossMonthlyExpensesGarbage',
+      key: 'gmeGarbage',
       Name: 'Garbage',
       Date: dateString,
       Amount: '',
@@ -711,7 +711,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateGarbage: (Garbage) => set({Garbage}),
 
     Gas: {
-      key: 'GrossMonthlyExpensesGas',
+      key: 'gmeGas',
       Name: 'Gas',
       Date: dateString,
       Amount: '',
@@ -720,7 +720,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateGas: (Gas) => set({Gas}),
 
     Internet: {
-      key: 'GrossMonthlyExpensesInternet',
+      key: 'gmeInternet',
       Name: 'Internet',
       Date: dateString,
       Amount: '',
@@ -729,7 +729,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateInternet: (Internet) => set({Internet}),
 
     PhonePlan: {
-      key: 'GrossMonthlyExpensesPhonePlan',
+      key: 'gmePhonePlan',
       Name: 'Phone Plan',
       Date: dateString,
       Amount: '',
@@ -738,7 +738,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updatePhonePlan: (PhonePlan) => set({PhonePlan}),
 
     AutoLoan: {
-      key: 'GrossMonthlyExpensesAutoLoan',
+      key: 'gmeAutoLoan',
       Name: 'Auto Loan',
       Date: dateString,
       Amount: '',
@@ -747,7 +747,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateAutoLoan: (AutoLoan) => set({AutoLoan}),
 
     AutoInsurance: {
-      key: 'GrossMonthlyExpensesAutoInsurance',
+      key: 'gmeAutoInsurance',
       Name: 'Auto Insurance',
       Date: dateString,
       Amount: '',
@@ -756,7 +756,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateAutoInsurance: (AutoInsurance) => set({AutoInsurance}),
 
     FuelCosts: {
-      key: 'GrossMonthlyExpensesFuelCosts',
+      key: 'gmeFuelCosts',
       Name: 'Fuel Costs',
       Date: dateString,
       Amount: '',
@@ -765,7 +765,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateFuelCosts: (FuelCosts) => set({FuelCosts}),
 
     AutoMaintenance: {
-      key: 'GrossMonthlyExpensesAutoMaintenance',
+      key: 'gmeAutoMaintenance',
       Name: 'Auto Maintenance',
       Date: dateString,
       Amount: '',
@@ -774,7 +774,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateAutoMaintenance: (AutoMaintenance) => set({AutoMaintenance}),
 
     Groceries: {
-      key: 'GrossMonthlyExpensesGroceries',
+      key: 'gmeGroceries',
       Name: 'Groceries',
       Date: dateString,
       Amount: '',
@@ -783,7 +783,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateGroceries: (Groceries) => set({Groceries}),
 
     DiningOut: {
-      key: 'GrossMonthlyExpensesDiningOut',
+      key: 'gmeDiningOut',
       Name: 'Dining Out',
       Date: dateString,
       Amount: '',
@@ -792,7 +792,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateDiningOut: (DiningOut) => set({DiningOut}),
 
     HealthInsurance: {
-      key: 'GrossMonthlyExpensesHealthInsurance',
+      key: 'gmeHealthInsurance',
       Name: 'Health Insurance',
       Date: dateString,
       Amount: '',
@@ -801,7 +801,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateHealthInsurance: (HealthInsurance) => set({HealthInsurance}),
 
     VisionInsurance: {
-      key: 'GrossMonthlyExpensesVisionInsurance',
+      key: 'gmeVisionInsurance',
       Name: 'Vision Insurance',
       Date: dateString,
       Amount: '',
@@ -810,7 +810,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateVisionInsurance: (VisionInsurance) => set({VisionInsurance}),
 
     DentalInsurance: {
-      key: 'GrossMonthlyExpensesDentalInsurance',
+      key: 'gmeDentalInsurance',
       Name: 'Dental Insurance',
       Date: dateString,
       Amount: '',
@@ -819,7 +819,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateDentalInsurance: (DentalInsurance) => set({DentalInsurance}),
 
     ChildCare: {
-      key: 'GrossMonthlyExpensesChildCare',
+      key: 'gmeChildCare',
       Name: 'Child Care',
       Date: dateString,
       Amount: '',
@@ -828,7 +828,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateChildCare: (ChildCare) => set({ChildCare}),
 
     ChildExpenses: {
-      key: 'GrossMonthlyExpensesChildExpenses',
+      key: 'gmeChildExpenses',
       Name: 'Child Expenses',
       Date: dateString,
       Amount: '',
@@ -837,7 +837,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateChildExpenses: (ChildExpenses) => set({ChildExpenses}),
 
     StudentLoan: {
-      key: 'GrossMonthlyExpensesStudentLoan',
+      key: 'gmeStudentLoan',
       Name: 'Student Loan',
       Date: dateString,
       Amount: '',
@@ -846,7 +846,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updateStudentLoan: (StudentLoan) => set({StudentLoan}),
 
     gmeLineOfCredit: {
-      key: 'GrossMonthlyExpensesLineOfCredit',
+      key: 'gmeLineOfCredit',
       Name: 'Line Of Credit',
       Date: dateString,
       Amount: '',
@@ -855,7 +855,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updategmeLineOfCredit: (gmeLineOfCredit) => set({gmeLineOfCredit}),
 
     gmeCreditCard: {
-      key: 'GrossMonthlyExpensesCreditCard',
+      key: 'gmeCreditCard',
       Name: 'Credit Card',
       Date: dateString,
       Amount: '',
@@ -864,7 +864,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updategmeCreditCard: (gmeCreditCard) => set({gmeCreditCard}),
 
     gmePersonalLoan: {
-      key: 'GrossMonthlyExpensesPersonalLoan',
+      key: 'gmePersonalLoan',
       Name: 'Personal Loan',
       Date: dateString,
       Amount: '',
@@ -873,7 +873,7 @@ const createGrossMonthlyExpensesSlice: StateCreator<
     updategmePersonalLoan: (gmePersonalLoan) => set({gmePersonalLoan}),
 
     gmeOther: {
-      key: 'GrossMonthlyExpensesOther',
+      key: 'gmeOther',
       Name: 'Other',
       Date: dateString,
       Amount: '',
