@@ -1,4 +1,6 @@
-import create, { StateCreator } from 'zustand'
+import create from 'zustand'
+
+import type { StateCreator } from 'zustand'
 
 const timeElapsed = Date.now();
 const today = new Date(timeElapsed);
@@ -91,8 +93,9 @@ interface GrossMonthlyIncome {
   ) => void,
 }
 
+  // & Assets & Liabilities,
 const createGrossMonthlyIncomeSlice: StateCreator<
-  GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities,
+  GrossMonthlyIncome & GrossMonthlyExpenses,
   [],
   [],
   GrossMonthlyIncome
@@ -621,9 +624,10 @@ interface GrossMonthlyExpenses {
     }
   ) => void,
 }
-
+  
+ //& Assets & Liabilities,
 const createGrossMonthlyExpensesSlice: StateCreator<
-  GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities,
+  GrossMonthlyIncome & GrossMonthlyExpenses,
   [],
   [],
   GrossMonthlyExpenses
@@ -1089,209 +1093,210 @@ interface Assets {
   ) => void,
 }
 
-const createAssetsSlice: StateCreator<
-  GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities,
-  [],
-  [],
-  Assets
-  > = (set) => ({
-    AssetsFormData: {
-      MarketValueOfHomesValue: 0,
-      MarketValueOfHomesInterest: 0,
-      MarketValueOfHomesNotes: '',
-      MutualFundsValue: 0,
-      MutualFundsInterest: 0,
-      MutualFundsNotes: '',
-      StocksValue: 0,
-      StocksInterest: 0,
-      StocksNotes: '',
-      AnnuitiesValue: 0,
-      AnnuitiesInterest: 0,
-      AnnuitiesNotes: '',
-      CashValueLifeValue: 0,
-      CashValueLifeInterest: 0,
-      CashValueLifeNotes: '',
-      SavingsAccountValue: 0,
-      SavingsAccountInterest: 0,
-      SavingsAccountNotes: '',
-      CheckingsAccountValue: 0,
-      CheckingsAccountInterest: 0,
-      CheckingsAccountNotes: '',
-      RetirementPlansValue: 0,
-      RetirementPlansInterest: 0,
-      RetirementPlansNotes: '',
-      RothRetirementPlansValue: 0,
-      RothRetirementPlansInterest: 0,
-      RothRetirementPlansNotes: '',
-      PensiosnValue: 0,
-      PensiosnInterest: 0,
-      PensiosnNotes: '',
-      CertificateOfDepositValue: 0,
-      CertificateOfDepositInterest: 0,
-      CertificateOfDepositNotes: '',
-      OtherAssetsValue: 0,
-      OtherAssetsInterest: 0,
-      OtherAssetsNotes: '',
-    },
-    update: () => set((state) => ({ AssetsFormData: state.AssetsFormData })),
-  })
+//const createAssetsSlice: StateCreator<
+//  GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities,
+//  [],
+//  [],
+//  Assets
+//  > = (set) => ({
+//    AssetsFormData: {
+//      MarketValueOfHomesValue: 0,
+//      MarketValueOfHomesInterest: 0,
+//      MarketValueOfHomesNotes: '',
+//      MutualFundsValue: 0,
+//      MutualFundsInterest: 0,
+//      MutualFundsNotes: '',
+//      StocksValue: 0,
+//      StocksInterest: 0,
+//      StocksNotes: '',
+//      AnnuitiesValue: 0,
+//      AnnuitiesInterest: 0,
+//      AnnuitiesNotes: '',
+//      CashValueLifeValue: 0,
+//      CashValueLifeInterest: 0,
+//      CashValueLifeNotes: '',
+//      SavingsAccountValue: 0,
+//      SavingsAccountInterest: 0,
+//      SavingsAccountNotes: '',
+//      CheckingsAccountValue: 0,
+//      CheckingsAccountInterest: 0,
+//      CheckingsAccountNotes: '',
+//      RetirementPlansValue: 0,
+//      RetirementPlansInterest: 0,
+//      RetirementPlansNotes: '',
+//      RothRetirementPlansValue: 0,
+//      RothRetirementPlansInterest: 0,
+//      RothRetirementPlansNotes: '',
+//      PensiosnValue: 0,
+//      PensiosnInterest: 0,
+//      PensiosnNotes: '',
+//      CertificateOfDepositValue: 0,
+//      CertificateOfDepositInterest: 0,
+//      CertificateOfDepositNotes: '',
+//      OtherAssetsValue: 0,
+//      OtherAssetsInterest: 0,
+//      OtherAssetsNotes: '',
+//    },
+//    update: () => set((state) => ({ AssetsFormData: state.AssetsFormData })),
+//  })
+//
+//interface Liabilities {
+//  Mortgage: {
+//    key: string,
+//    Name: string,
+//    Amount: number,
+//    Interest: number,
+//    Payment: number,
+//    Notes: string,
+//  },
+//  updateMortgage: (
+//    Mortgage: {
+//      key: string,
+//      Name: string,
+//      Amount: number,
+//      Interest: number,
+//      Payment: number,
+//      Notes: string,
+//    }
+//  ) => void,
+//
+//  CarLoan: {
+//    key: string,
+//    Name: string,
+//    Amount: number,
+//    Interest: number,
+//    Payment: number,
+//    Notes: string,
+//  },
+//  updateCarLoan: (
+//    CarLoan: {
+//      key: string,
+//      Name: string,
+//      Amount: number,
+//      Interest: number,
+//      Payment: number,
+//      Notes: string,
+//    }
+//  ) => void,
+//
+//  CreditCard: {
+//    key: string,
+//    Name: string,
+//    Amount: number,
+//    Interest: number,
+//    Payment: number,
+//    Notes: string,
+//  },
+//  updateCreditCard: (
+//    CreditCard: {
+//      key: string,
+//      Name: string,
+//      Amount: number,
+//      Interest: number,
+//      Payment: number,
+//      Notes: string,
+//    }
+//  ) => void,
+//
+//  PersonalLoan: {
+//    key: string,
+//    Name: string,
+//    Amount: number,
+//    Interest: number,
+//    Payment: number,
+//    Notes: string,
+//  },
+//  updatePersonalLoan: (
+//    PersonalLoan: {
+//      key: string,
+//      Name: string,
+//      Amount: number,
+//      Interest: number,
+//      Payment: number,
+//      Notes: string,
+//    }
+//  ) => void,
+//
+//  LineOfCredit: {
+//    key: string,
+//    Name: string,
+//    Amount: number,
+//    Interest: number,
+//    Payment: number,
+//    Notes: string,
+//  },
+//  updateLineOfCredit: (
+//    LineOfCredit: {
+//      key: string,
+//      Name: string,
+//      Amount: number,
+//      Interest: number,
+//      Payment: number,
+//      Notes: string,
+//    }
+//  ) => void,
+//
+//  OtherLoan: {
+//    key: string,
+//    Name: string,
+//    Amount: number,
+//    Interest: number,
+//    Payment: number,
+//    Notes: string,
+//  },
+//  updateOtherLoan: (
+//    OtherLoan: {
+//      key: string,
+//      Name: string,
+//      Amount: number,
+//      Interest: number,
+//      Payment: number,
+//      Notes: string,
+//    }
+//  ) => void,
+//}
+//
+//const createLiabilitiesSlice: StateCreator<
+//  GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities,
+//  [],
+//  [],
+//  Liabilities
+//  > = (set) => ({
+//    LiabilitiesFormData: {
+//      MortgageAmount: 0,
+//      MortgageInterest: 0,
+//      MortgageMinimumPayment: 0,
+//      MortgageNotes: '',
+//      CarLoanAmount: 0,
+//      CarLoanInterest: 0,
+//      CarLoanMinimumPayment: 0,
+//      CarLoanNotes: '',
+//      CreditCardAmount: 0,
+//      CreditCardInterest: 0,
+//      CreditCardMinimumPayment: 0,
+//      CreditCardNotes: '',
+//      PersonalLoanAmount: 0,
+//      PersonalLoanInterest: 0,
+//      PersonalLoanMinimumPayment: 0,
+//      PersonalLoanNotes: '',
+//      LineOfCreditAmount: 0,
+//      LineOfCreditInterest: 0,
+//      LineOfCreditMinimumPayment: 0,
+//      LineOfCreditNotes: '',
+//      OtherLoanAmount: 0,
+//      OtherLoanInterest: 0,
+//      OtherLoanMinimumPayment: 0,
+//      OtherLoanNotes: '',
+//    },
+//    update: () => set((state) => ({ LiabilitiesFormData: state.LiabilitiesFormData })),
+//  })
 
-interface Liabilities {
-  Mortgage: {
-    key: string,
-    Name: string,
-    Amount: number,
-    Interest: number,
-    Payment: number,
-    Notes: string,
-  },
-  updateMortgage: (
-    Mortgage: {
-      key: string,
-      Name: string,
-      Amount: number,
-      Interest: number,
-      Payment: number,
-      Notes: string,
-    }
-  ) => void,
-
-  CarLoan: {
-    key: string,
-    Name: string,
-    Amount: number,
-    Interest: number,
-    Payment: number,
-    Notes: string,
-  },
-  updateCarLoan: (
-    CarLoan: {
-      key: string,
-      Name: string,
-      Amount: number,
-      Interest: number,
-      Payment: number,
-      Notes: string,
-    }
-  ) => void,
-
-  CreditCard: {
-    key: string,
-    Name: string,
-    Amount: number,
-    Interest: number,
-    Payment: number,
-    Notes: string,
-  },
-  updateCreditCard: (
-    CreditCard: {
-      key: string,
-      Name: string,
-      Amount: number,
-      Interest: number,
-      Payment: number,
-      Notes: string,
-    }
-  ) => void,
-
-  PersonalLoan: {
-    key: string,
-    Name: string,
-    Amount: number,
-    Interest: number,
-    Payment: number,
-    Notes: string,
-  },
-  updatePersonalLoan: (
-    PersonalLoan: {
-      key: string,
-      Name: string,
-      Amount: number,
-      Interest: number,
-      Payment: number,
-      Notes: string,
-    }
-  ) => void,
-
-  LineOfCredit: {
-    key: string,
-    Name: string,
-    Amount: number,
-    Interest: number,
-    Payment: number,
-    Notes: string,
-  },
-  updateLineOfCredit: (
-    LineOfCredit: {
-      key: string,
-      Name: string,
-      Amount: number,
-      Interest: number,
-      Payment: number,
-      Notes: string,
-    }
-  ) => void,
-
-  OtherLoan: {
-    key: string,
-    Name: string,
-    Amount: number,
-    Interest: number,
-    Payment: number,
-    Notes: string,
-  },
-  updateOtherLoan: (
-    OtherLoan: {
-      key: string,
-      Name: string,
-      Amount: number,
-      Interest: number,
-      Payment: number,
-      Notes: string,
-    }
-  ) => void,
-}
-
-const createLiabilitiesSlice: StateCreator<
-  GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities,
-  [],
-  [],
-  Liabilities
-  > = (set) => ({
-    LiabilitiesFormData: {
-      MortgageAmount: 0,
-      MortgageInterest: 0,
-      MortgageMinimumPayment: 0,
-      MortgageNotes: '',
-      CarLoanAmount: 0,
-      CarLoanInterest: 0,
-      CarLoanMinimumPayment: 0,
-      CarLoanNotes: '',
-      CreditCardAmount: 0,
-      CreditCardInterest: 0,
-      CreditCardMinimumPayment: 0,
-      CreditCardNotes: '',
-      PersonalLoanAmount: 0,
-      PersonalLoanInterest: 0,
-      PersonalLoanMinimumPayment: 0,
-      PersonalLoanNotes: '',
-      LineOfCreditAmount: 0,
-      LineOfCreditInterest: 0,
-      LineOfCreditMinimumPayment: 0,
-      LineOfCreditNotes: '',
-      OtherLoanAmount: 0,
-      OtherLoanInterest: 0,
-      OtherLoanMinimumPayment: 0,
-      OtherLoanNotes: '',
-    },
-    update: () => set((state) => ({ LiabilitiesFormData: state.LiabilitiesFormData })),
-  })
-
-const useBoundStore = create<GrossMonthlyIncome & GrossMonthlyExpenses & Assets & Liabilities>()((...a) => ({
+// & Assets & Liabilities
+const useBoundStore = create<GrossMonthlyIncome & GrossMonthlyExpenses>()((...a) => ({
   ...createGrossMonthlyIncomeSlice(...a),
   ...createGrossMonthlyExpensesSlice(...a),
-  ...createAssetsSlice(...a),
-  ...createLiabilitiesSlice(...a),
+  //...createAssetsSlice(...a),
+  //...createLiabilitiesSlice(...a),
 }))
 
 export default useBoundStore

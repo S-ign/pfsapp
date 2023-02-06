@@ -2,9 +2,9 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import TextField from '@mui/material/TextField';
-import type { AssetFormItemInterface } from '../types/form';
+import type { FormItemInterface } from '../types/form';
 
-export default function AssetsFormItem(props: {formInfo: AssetFormItemInterface}) {
+export default function AssetsFormItem(props: {formInfo: FormItemInterface}) {
   return (
     <div>
       <div className="flex container">

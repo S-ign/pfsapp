@@ -55,6 +55,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  gmi GrossMonthlyIncome[]
 }
 
 model VerificationToken {
@@ -122,6 +123,8 @@ model GrossMonthlyIncome {
   businesses         Business[]
   dividendStocks     DividendStock[]
   others             GMIOther[]
+  userId             String @unique
+  userInfo           User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Mortgage {

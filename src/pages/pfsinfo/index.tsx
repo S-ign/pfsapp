@@ -1,4 +1,5 @@
 import { type NextPage } from "next";
+import { trpc } from "../../utils/trpc"
 import Link from "next/link";
 
 import Nav from "../../components/Nav"
@@ -7,115 +8,83 @@ import FormItem from "../../components/FormItem"
 import useBoundStore from '../../slices/FormSlices'
 
 const PfsInfo: NextPage = () => {
-  //const salary = useBoundStore((state) => state.Salary)
-  //const realEstateRentals = useBoundStore((state) => state.RealEstateRentals)
-  //const business = useBoundStore((state) => state.Business)
-  //const dividendStocks = useBoundStore((state) => state.DividendStocks)
-  //const other = useBoundStore((state) => state.Other)
-  //const gmi = [salary,realEstateRentals,business,dividendStocks,other]
-
+  
   // GrossMonthlyIncome
   const salary = useBoundStore((state) => state.Salary)
   const updateSalary = useBoundStore((state) => state.updateSalary)
-
   const realEstateRentals = useBoundStore((state) => state.RealEstateRentals)
   const updateRealEstateRentals = useBoundStore((state) => state.updateRealEstateRentals)
-
   const business = useBoundStore((state) => state.Business)
   const updateBusiness = useBoundStore((state) => state.updateBusiness)
-
   const dividendStocks = useBoundStore((state) => state.DividendStocks)
   const updateDividendStocks = useBoundStore((state) => state.updateDividendStocks)
-
   const other = useBoundStore((state) => state.Other)
   const updateOther = useBoundStore((state) => state.updateOther)
+
+  // const gmi = [salary,realEstateRentals,business, dividendStocks,other]
 
   // GrossMonthlyExpenses
   const gmeMortgage = useBoundStore((state) => state.gmeMortgage)
   const updategmeMortgage = useBoundStore((state) => state.updategmeMortgage)
-
   const rent = useBoundStore((state) => state.Rent)
   const updateRent = useBoundStore((state) => state.updateRent)
-
   const insurance = useBoundStore((state) => state.Insurance)
   const updateInsurance = useBoundStore((state) => state.updateInsurance)
-
   const propertyTax = useBoundStore((state) => state.PropertyTax)
   const updatePropertyTax = useBoundStore((state) => state.updatePropertyTax)
-
   const homeMaintenance = useBoundStore((state) => state.HomeMaintenance)
   const updateHomeMaintenance = useBoundStore((state) => state.updateHomeMaintenance)
-
   const homeIncidentals = useBoundStore((state) => state.HomeIncidentals)
   const updateHomeIncidentals = useBoundStore((state) => state.updateHomeIncidentals)
-
   const electricity = useBoundStore((state) => state.Electricity)
   const updateElectricity = useBoundStore((state) => state.updateElectricity)
-
   const water = useBoundStore((state) => state.Water)
   const updateWater = useBoundStore((state => state.updateWater))
-
   const garbage = useBoundStore((state) => state.Garbage)
   const updateGarbage = useBoundStore((state) => state.updateGarbage)
-
   const gas = useBoundStore((state) => state.Gas)
   const updateGas = useBoundStore((state) => state.updateGas)
-
   const internet = useBoundStore((state) => state.Internet)
   const updateInternet = useBoundStore((state) => state.updateInternet)
-
   const phonePlan = useBoundStore((state) => state.PhonePlan)
   const updatePhonePlan = useBoundStore((state) => state.updatePhonePlan)
-
   const autoLoan = useBoundStore((state) => state.AutoLoan)
   const updateAutoLoan = useBoundStore((state) => state.updateAutoLoan)
-
   const autoInsurance = useBoundStore((state) => state.AutoInsurance)
   const updateAutoInsurance = useBoundStore((state) => state.updateAutoInsurance)
-
   const fuelCosts = useBoundStore((state) => state.FuelCosts)
   const updateFuelCosts = useBoundStore((state) => state.updateFuelCosts)
-
   const autoMaintenance = useBoundStore((state) => state.AutoMaintenance)
   const updateAutoMaintenance = useBoundStore((state) => state.updateAutoMaintenance)
-
   const groceries = useBoundStore((state) => state.Groceries)
   const updateGroceries = useBoundStore((state) => state.updateGroceries)
-
   const diningOut = useBoundStore((state) => state.DiningOut)
   const updateDiningOut = useBoundStore((state) => state.updateDiningOut)
-
   const healthInsurance = useBoundStore((state) => state.HealthInsurance)
   const updateHealthInsurance = useBoundStore((state) => state.updateHealthInsurance)
-
   const visionInsurance = useBoundStore((state) => state.VisionInsurance)
   const updateVisionInsurance = useBoundStore((state) => state.updateVisionInsurance)
-
   const dentalInsurance = useBoundStore((state) => state.DentalInsurance)
   const updateDentalInsurance = useBoundStore((state) => state.updateDentalInsurance)
-
   const childCare = useBoundStore((state) => state.ChildCare)
   const updateChildCare = useBoundStore((state) => state.updateChildCare)
-
   const childExpenses = useBoundStore((state) => state.ChildExpenses)
   const updateChildExpenses = useBoundStore((state) => state.updateChildExpenses)
-
   const studentLoan = useBoundStore((state) => state.StudentLoan)
   const updateStudentLoan = useBoundStore((state) => state.updateStudentLoan)
-
   const gmeLineOfCredit = useBoundStore((state) => state.gmeLineOfCredit)
   const updategmeLineOfCredit = useBoundStore((state) => state.updategmeLineOfCredit)
-
   const gmeCreditCard = useBoundStore((state) => state.gmeCreditCard)
   const updategmeCreditCard = useBoundStore((state) => state.updategmeCreditCard)
-
   const gmePersonalLoan = useBoundStore((state) => state.gmePersonalLoan)
   const updategmePersonalLoan = useBoundStore((state) => state.updategmePersonalLoan)
-
   const gmeOther = useBoundStore((state) => state.gmeOther)
   const updategmeOther = useBoundStore((state) => state.updategmeOther)
 
-  const saveHandler = () => {}
+  const saveHandler = () => {
+    trpc.userForm.postGMI
+    console.log("postGMI called...")
+  }
 
   return (
     <>
@@ -140,23 +109,7 @@ const PfsInfo: NextPage = () => {
                 <FormItem key={business.key} keyname={business.key} Name={business.Name} Date={business.Date} Amount={business.Amount} Notes={business.Notes} update={updateBusiness} />
                 <FormItem key={dividendStocks.key} keyname={dividendStocks.key} Name={dividendStocks.Name} Date={dividendStocks.Date} Amount={dividendStocks.Amount} Notes={dividendStocks.Notes} update={updateDividendStocks} />
                 <FormItem key={other.key} keyname={other.key} Name={other.Name} Date={other.Date} Amount={other.Amount} Notes={other.Notes} update={updateOther} />
-              {/*
 
-              <>
-                {
-                  (gmi !== undefined)
-                    &&
-                      gmi.map(({key, Name, Date, Amount, Notes}) => {
-                      console.log(key, Name,Date, Amount, Notes)
-                      return (
-                        <FormItem 
-                          key={key} keyname={key} Name={Name} Date={Date} Amount={Amount} Notes={Notes}
-                        />
-                      )
-                      })
-                }
-              </> 
-              */}
             </div>
           
             {/* card section */}
@@ -219,22 +172,7 @@ const PfsInfo: NextPage = () => {
                 <FormItem key={gmePersonalLoan.key} keyname={gmePersonalLoan.key} Name={gmePersonalLoan.Name} Date={gmePersonalLoan.Date} Amount={gmePersonalLoan.Amount} Notes={gmePersonalLoan.Notes} update={updategmePersonalLoan} />
 
                 <FormItem key={gmeOther.key} keyname={gmeOther.key} Name={gmeOther.Name} Date={gmeOther.Date} Amount={gmeOther.Amount} Notes={gmeOther.Notes} update={updategmeOther} />
-              {/*
-              <>
-                {
-                  (gme !== undefined)
-                    &&
-                      gme.map(({key, Name, Date, Amount, Notes}) => {
-                      console.log(key, Name,Date, Amount, Notes)
-                      return (
-                        <FormItem 
-                          key={key} keyname={key} Name={Name} Date={Date} Amount={Amount} Notes={Notes}
-                        />
-                      )
-                      })
-                }
-              </> 
-              */}
+              
             </div>
 
             {/* Assets card section */}
