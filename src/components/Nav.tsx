@@ -21,11 +21,6 @@ export default Nav
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
 
-  //const { data: secretMessage } = trpc.auth.getSecretMessage.useQuery(
-  //  undefined, // no input
-  //  { enabled: sessionData?.user !== undefined },
-  //);
-
   return (
     <div className="flex flex-row items-center justify-center gap-2">
       {sessionData && (
@@ -33,9 +28,6 @@ const AuthShowcase: React.FC = () => {
           name={sessionData?.user?.name}
         />
 
-        /*<p className="p-8 w-20 h-20 flex text-md text-black border border-amber-100 rounded-full border-4 items-center justify-center justify-items-center content-center hover:bg-white transition">
-         {sessionData?.user?.name}
-          </p>*/
       )}
       {!sessionData && (
         <button

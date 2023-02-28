@@ -53,9 +53,10 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role Role @default(BASIC)
   accounts      Account[]
   sessions      Session[]
-  gmi GrossMonthlyIncome[]
+  grossMonthlyIncome GrossMonthlyIncome?
 }
 
 model VerificationToken {
@@ -68,63 +69,68 @@ model VerificationToken {
 
 model Salary {
   id        String @id @default(cuid())
-  received  DateTime?
-  name     String
-  notes     String
-  amount    String
+  key       String?
+  Name      String?
+  Date      String?
+  Notes     String?
+  Amount    String?
   gmiId     String
-  gmiInfo   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
+  grossMonthlyIncome GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
 }
 
 model RealEstateRental {
   id        String   @id @default(cuid())
-  received  DateTime?
-  name     String
-  notes     String
-  amount    String
+  key       String?
+  Name      String?
+  Date  String?
+  Notes     String?
+  Amount    String?
   gmiId     String
-  gmiInfo   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
+  grossMonthlyIncome   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
 }
 
 model Business {
   id        String   @id @default(cuid())
-  received  DateTime?
-  name     String
-  notes     String
-  amount    String
+  key       String?
+  Name      String?
+  Date  String?
+  Notes     String?
+  Amount    String?
   gmiId     String
-  gmiInfo   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
+  grossMonthlyIncome   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
 }
 
 model DividendStock {
   id        String   @id @default(cuid())
-  received  DateTime?
-  name     String
-  notes     String
-  amount    String
+  key       String?
+  Name      String?
+  Date  String?
+  Notes     String?
+  Amount    String?
   gmiId     String
-  gmiInfo   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
+  grossMonthlyIncome   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
 }
 
 model GMIOther {
   id        String   @id @default(cuid())
-  received  DateTime?
-  name     String
-  notes     String
-  amount    String
+  key       String?
+  Name      String?
+  Date  String?
+  Notes     String?
+  Amount    String?
   gmiId     String
-  gmiInfo   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
+  grossMonthlyIncome   GrossMonthlyIncome @relation(fields: [gmiId], references: [id], onDelete: Cascade)
 }
 
 model GrossMonthlyIncome {
   id                 String   @id @default(cuid())
-  salaries           Salary[]
-  realEstateRentals  RealEstateRental[]
-  businesses         Business[]
-  dividendStocks     DividendStock[]
-  others             GMIOther[]
+  Salary           Salary[]
+  RealEstateRentals  RealEstateRental[]
+  Business         Business[]
+  DividendStocks     DividendStock[]
+  Other             GMIOther[]
   userId             String @unique
-  userInfo           User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Mortgage {
@@ -568,4 +574,9 @@ model Assets {
   pension                 Pension[]
   certificateOfDeposit    CertificateOfDeposit[]
   OtherAsset              OtherAsset[]
+}
+
+enum Role {
+  BASIC
+  ADMIN
 }

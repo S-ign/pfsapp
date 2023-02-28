@@ -1,79 +1,72 @@
 import { z } from "zod";
 
-import useBoundStore from '../../../slices/FormSlices'
-
 import { router, publicProcedure } from "../trpc";
 
 export const userFormRouter = router({
-  hello: publicProcedure
-    .input(z.object({ text: z.string().nullish() }).nullish())
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input?.text ?? "world"}`,
-      };
+  postGMI: publicProcedure.input(z.object({
+    Salary: z.object({
+      create: z.object({
+        key: z.string(),
+        Name: z.string(),
+        Date: z.string(),
+        Amount: z.string(),
+        Notes: z.string(),
+      })
     }),
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
-  }),
-  postGMI: publicProcedure.query(({ ctx }) => {
-    const salary = useBoundStore((state) => state.Salary)
-    const realEstateRentals = useBoundStore((state) => state.RealEstateRentals)
-    const business = useBoundStore((state) => state.Business)
-    const dividendStocks = useBoundStore((state) => state.DividendStocks)
-    const other = useBoundStore((state) => state.Other)
-    ctx.prisma.user.update({
-      where: {
-        email: "",
+    RealEstateRentals: z.object({
+      create: z.object({
+        key: z.string(),
+        Name: z.string(),
+        Date: z.string(),
+        Amount: z.string(),
+        Notes: z.string(),
+      })
+    }),
+    Business: z.object({
+      create: z.object({
+        key: z.string(),
+        Name: z.string(),
+        Date: z.string(),
+        Amount: z.string(),
+        Notes: z.string(),
+      })
+    }),
+    DividendStocks: z.object({
+      create: z.object({
+        key: z.string(),
+        Name: z.string(),
+        Date: z.string(),
+        Amount: z.string(),
+        Notes: z.string(),
+      })
+    }),
+    Other: z.object({
+      create: z.object({
+        key: z.string(),
+        Name: z.string(),
+        Date: z.string(),
+        Amount: z.string(),
+        Notes: z.string(),
+      })
+    }),
+  })).mutation( async ({ input, ctx }) => {
+        
+    const r = await ctx.prisma.grossMonthlyIncome.upsert({
+      create: {
+        ...input,
+        userId: ctx.session.user.id
       },
-      data: {
-
-        gmi: {
-          create: {
-
-            salaries: {
-              create: {
-                name: salary.Name,
-                notes: salary.Notes,
-                amount: salary.Amount
-              },
-            },
-
-            realEstateRentals: {
-              create: {
-                name: realEstateRentals.Name,
-                notes: realEstateRentals.Notes,
-                amount: realEstateRentals.Amount
-              },
-            },
-
-            businesses: {
-              create: {
-                name: business.Name,
-                notes: business.Notes,
-                amount: business.Amount
-              },
-            },
-
-            dividendStocks: {
-              create: {
-                name: dividendStocks.Name,
-                notes: dividendStocks.Notes,
-                amount: dividendStocks.Amount
-              },
-            },
-
-            others: {
-              create: {
-                name: other.Name,
-                notes: other.Notes,
-                amount: other.Amount
-              },
-            },
-
-          },
-        }
+      update: {
+        ...input,
+        userId: ctx.session.user.id
+      },
+      where: {
+        userId: ctx.session.user.id
       }
     })
+    return r
   }),
+
+
 });
 

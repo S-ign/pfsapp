@@ -6,15 +6,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import type { Dayjs } from 'dayjs'
 
 export default function BasicDatePicker(props: { label: string, value: string | null, dateChangeHandler: (event: Dayjs | null) => void }) {
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
-        label={props.label}
-        value={props.value}
-        onChange={props.dateChangeHandler}
-        renderInput={(params) => <TextField {...params} />}
-      />
+    <DatePicker
+      label={props.label}
+      value={props.value}
+      onChange={props.dateChangeHandler}
+      renderInput={(params) => <TextField {...params} />}
+    />
+
     </LocalizationProvider>
   );
 }
